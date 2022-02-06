@@ -11,9 +11,9 @@
 
 - [ ] Function to create a matrix which is the transpose of given matrix
 
-- [ ] Function to add two matrices
+- [x] Function to add two matrices
 
-- [ ] Function to multiply two matrices
+- [x] Function to multiply two matrices
 
 - [ ] One to multiple each element in a matrix by a scalar
 - [ ] One to solve a two variable matrix equation using a ‘magic’ matrix
@@ -24,3 +24,5 @@
 ### Iterative version
 
 ### Recursive version
+
+## Reflection
