@@ -5,7 +5,7 @@
 
 ## matrix library
 
-- [ ] Function to create a matrix being a column vector from given matrix
+- [x] Function to create a matrix being a column vector from given matrix
 
 - [ ] Function to calculate the dot product of two vectors
 

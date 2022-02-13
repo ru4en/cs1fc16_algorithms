@@ -27,5 +27,9 @@ int main() {
         
     Matrix matrixC = add(matrixB, matrixB);
     print(matrixC);
+    Matrix matrixC = add(matrixB, matrixB);
+    print(matrixC);
+    Matrix matrixC = add(matrixB, matrixB);
+    print(matrixC);
     return 0;
 }
