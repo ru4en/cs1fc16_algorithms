@@ -13,7 +13,7 @@ using namespace std;
 struct myMat {			// allows for matrices up to size 4*4
 	int numRows;		// number of rows
 	int numCols;
-	int data[256];		// data are stored in row order //** Had to switch from 4 to something over 200 for some reason.**//
+	int data[16];		// data are stored in row order
 };
 
 myMat zeroMat(int r, int c) {
@@ -58,30 +58,30 @@ myMat mFromStr(string s) {
 
 myMat mGetRow(myMat m, int row) {
 	// create a matrix from m, having one row
-	myMat res = zeroMat(1, m.numCols);		// create a matrix of 1 row
+	myMat res = zeroMat(1, m.numCols);				// create a matrix of 1 row
 	for (int col = 0; col < m.numCols; col++)		// for each element in row
 		res.data[col] = getElem(m, row, col);		// copy col element to res
 	return res;
 }
 myMat mGetCol(myMat m, int col) {
-	myMat res = zeroMat(m.numRows, 1);
-	for (int row = 0; row < m.numRows; row++)
-		res.data[row] = getElem(m, row, col);
+	myMat res = zeroMat(m.numRows, 1); 				// create new matrix with 1 column
+	for (int row = 0; row < m.numRows; row++)		// for each element in column
+		res.data[row] = getElem(m, row, col);		// copy row element to res
 	return res;
 }
 
 
 int dotProd(myMat v1, myMat v2) {
-	int prod = 0;
-	for (int i = 0; i < v1.numCols; i++){
+	int prod = 0;									// initiate prod varable
+	for (int i = 0; i < v1.numCols; i++){			// for each column in vector add prod plus the multuple of both the vectors
 		prod = prod + getElem(v1,0,i) * getElem(v2,0,i);
 	}
 	return prod;
 }
 
 myMat mTranspose(myMat m) {
-	myMat mO = zeroMat(m.numCols, m.numRows);
-	for(int i=0; i< m.numRows; ++i) {
+	myMat mO = zeroMat(m.numCols, m.numRows);		// create a matrix mO with the same number of rows and columns as the input matrix.
+	for(int i=0; i< m.numRows; ++i) {				// for each item in rom and for each column in row flip the values that reffer to  i and j.
 		for(int j=0; j< m.numCols; ++j){
 			int val = getElem(m, i, j);
 			setElem(mO, j, i, val);
@@ -91,15 +91,9 @@ myMat mTranspose(myMat m) {
 }
 
 myMat mAdd(myMat m1, myMat m2) {
-
-	if(m1.numRows != m2.numRows || m1.numCols != m2.numCols){ // check if matrix A and matrix B is same size
-        throw std::invalid_argument("Arrays have incompatible sizes for this operation."); // throw error if not same size
-    }
-
-	myMat m3 = zeroMat(m1.numRows, m2.numCols);
-
-	for(int i = 0; i < 16; i++) { //loop until all numbers in A and B are added to result and returned
-            for(int j = 0; j < 16; j++) {
+	myMat m3 = zeroMat(m1.numRows, m2.numCols); 	// create a matrix with the same number of rows as the matrix1 and the same number of columns as the matrix2.
+	for(int i = 0; i < m1.numRows; i++) {			//loop until all numbers in matrix1 and matrix1 are added to matrix3 and returned the matrix.
+            for(int j = 0; j < m2.numCols; j++) {
 				int val = getElem(m1, i, j) + getElem(m2, i, j);
                 setElem(m3, i, j, val);
             }
@@ -119,28 +113,24 @@ void printMat(const char* mess, myMat m) {
 }
 
 myMat mMult(myMat m1, myMat m2) {
-	printMat("MAS", m1);
-	printMat("MAS", m2);
-	myMat m3;
-	if (m1.numRows == 1 && m1.numCols == 1)
+	myMat m3;									// initiate matrix m3
+	if (m1.numRows == 1 && m1.numCols == 1)		// if single row, column matrix inputted use the number of rows and columns as the other matrix.
 	{
 		m3 = zeroMat(m2.numRows, m2.numCols);
 	}else if (m2.numRows == 1 && m2.numCols == 1) {
 		m3 = zeroMat(m1.numRows, m1.numCols);
 
-	}else if(m1.numRows != m2.numRows || m1.numCols != m2.numCols){ // check if matrix A and matrix B is same size
-        throw std::invalid_argument("Arrays have incompatible sizes for this operation."); // throw error if not same size
-    }else {
+	}else {										// else set the number of rows the same size as the first matrix and column as the second matrix.
 		m3 = zeroMat(m1.numRows, m2.numCols);
 	}
 
-	int val;
+	int val;									// varable ot store values when loopes
 	
-	for(int i = 0; i < 16; ++i) { // loop trough A and B, multiply and and to result, then return.
-		for(int j = 0; j < 16; ++j) {
-			for(int k = 0; k < 16; ++k) {
-				val = getElem(m3, i, j) + getElem(m1, i, k) * getElem(m2, k, j);
-				setElem(m3, i, j, val);
+	for(int i = 0; i < m1.numRows; ++i) { 		// loop trough A and B, multiply and and to result, then return.
+		for(int j = 0; j < m2.numCols; ++j) {
+			for(int k = 0; k < m2.numRows; ++k) {
+				int val = getElem(m3, i, j) + getElem(m1, i, k) * getElem(m2, k, j);
+				setElem(m3, i, j, val);			// save the value of val to m3 and output when done
 			}
 		}
 	}
@@ -150,8 +140,44 @@ myMat mMult(myMat m1, myMat m2) {
 int main()
 {
 	cout << "Richard's Matrix Example Program\n";
-	myMat mA, mB, mC, mD, mE, mF;
+
+	cout << "Question 1. Matrix Calculation\n"; // Question 1 ----------------------------
 	
+	myMat Q1A = mFromStr("1,9,7;9,5,9"); 		// Matrix A
+	printMat("A", Q1A);
+
+	myMat Q1B = mFromStr("9,5,10;1,9,8"); 		// Matrix B
+	printMat("B", Q1B);
+
+	myMat Q1C = mFromStr("8,7;10,10;1,9"); 		// Matrix C
+	printMat("C", Q1C);
+
+	cout << "Calculate 1A + 10B\n";
+
+	myMat Q1_1_mat = mFromStr("1");				// create 1x1 matrix of 1 (ik its unecessary but its used to check if it works)
+	myMat Q1_10_mat = mFromStr("10");			// create 1x1 matrix of 10
+	myMat Q1_1A = mMult(Q1_1_mat, Q1A);			// Multiply 1 by Matrix A
+	printMat("1A", Q1_1A);
+	myMat Q1_10B = mMult(Q1_10_mat ,Q1B);		// Multiply 10 by Matrix B
+	printMat("10B", Q1_10B);
+
+	myMat Q1Ans1 = mAdd(Q1_1A, Q1_10B);			// Multiply 1A with Matrix 10B
+	printMat("1A + 10B", Q1Ans1);				// print out the matrix
+
+
+	cout << "Calculate 9A + 5C`\n";
+	
+	myMat Q1_9_mat = mFromStr("9");				// create 1x1 matrix of 9
+	myMat Q1_5_mat = mFromStr("5");				// create 1x1 matrix of 5
+	myMat Q1_9A = mMult(Q1_9_mat, Q1A);			// Multiply 9 by Matrix A
+	myMat Q1_5C = mMult(Q1_5_mat, Q1C);			// Multiply 5 by Matrix C
+	myMat Q1_5Ct = mTranspose(Q1_5C);			// get the transpose of the matrix 5C
+	myMat Q1Ans2 = mAdd(Q1_9A, Q1_5Ct);			// Multiply 9A with Matrix 5C'
+	printMat("9A + 5C`", Q1Ans2);				// print out the matrix
+	
+	cout << "Calculate C x B\n";
+
+	myMat Q1Ans3 = mMult(Q1C, Q1B);				// Multiply Matrix C with Matrix B
+	printMat("C x B", Q1Ans3);
 	return 0;
 }
-
