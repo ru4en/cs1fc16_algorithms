@@ -1,16 +1,16 @@
 # Algorithms
 
-**Module Code: ** CS1FC16
+**Module Code:** CS1FC16
 
-**Assignment report Title: ** Matrix and Fibonacci algorithms
+**Assignment report Title:** Matrix and Fibonacci algorithms
 
-**Student Number: ** 30021591
+**Student Number:** 30021591
 
-**Date: ** 13/022022
+**Date:** 13/02/2022
 
-**Actual hrs spent for the assignment: ** 12hrs
+**Actual hrs spent for the assignment:** 12hrs
 
-**Assignment evaluation (3 key points): ** Learned how to create ## ## ## in C++. grasped the basic understand of Functional VS imperative programming and the effects on performance.
+**Assignment evaluation (3 key points):** Learned how to create fibonacci, matrix multiplications, additions, transpose, dot product in C++. grasped the basic understand of Functional VS imperative programming and the effects on performance.
 
 ## Introduction
 
@@ -21,6 +21,7 @@ For this report I am instructed to create 2 sets of algorithms. One of them will
 As stated previously I will be extending the matrix library to support matrix multiplications, additions, transpose, dot product and get column. This will be implemented using 5 functions. 
 
 Firstly, the matrix library comes with a matrix structure.
+
 ```C++
 struct myMat {			// allows for matrices up to size 4*4
 	int numRows;		// number of rows
@@ -32,6 +33,7 @@ struct myMat {			// allows for matrices up to size 4*4
 As stated, the myMat struct will allow to create matrices up to 4 rows and 4 columns. The `numRows` variable and `numCols` variable stores the number of rows and columns to be created. The `data` variable holds the value of the matrix.
 
  To get the column of a matrix I will have to create a new matrix structure for the output. Then as shown below for every row we loop and append each element from the matrix to the output vector.
+
 ``` C++
 myMat mGetCol(myMat m, int col) {
 	myMat res = zeroMat(m.numRows, 1); 				// create new matrix with 1 column
@@ -42,7 +44,7 @@ myMat mGetCol(myMat m, int col) {
 ```
 
 Next, I had to create a function to calculate the dot product of a given vector. This was simple as I had to loop over the columns and add the multiple of both the vectors to the result. This that can be outputted as an integer.
- 
+
 ```C++
 int dotProd(myMat v1, myMat v2) {
 	int prod = 0;									// initiate prod variable
@@ -171,6 +173,7 @@ Writing an algorithm to find and time Fibonacci sequences was the second task. H
 I have used the `chrono` library to get the execution time for each style of the Fibonacci sequences. 
 
 To use this program `cd` into the `Fibonacci` directory and type `make`. To execute the program simply type `./main` .
+
 ```
 Usage: 
         ./fib [-i/-r] [count] [-t] 
@@ -185,7 +188,7 @@ Usage:
 In the imperative version a desired number is passed to the function and is looped that many times, each time adding the value of `fib1` and `fib2` to `fib`. Then moving `fib2` to `fib1`. The Value of `fib` is also moved to `fib2`. Finally the value of `fib2` is returned.
 
 ```c++
-int imp_fib(int count) { // function for Fibonacci Number using the imperative methord
+int imp_fib(int count) { // function for Fibonacci Number using the imperative method
     std::cout << count << " Fibonacci Number using the imperative methord." << std::endl;
 
     for(int i = 2; i < count; i++){ 
@@ -199,10 +202,11 @@ int imp_fib(int count) { // function for Fibonacci Number using the imperative m
 ```
 
 ### Recursive version
+
 Using the recursive method, the function here does not use a loop yet is recursively called and the previous count is inputted as an argument. depending on if the value of `count` is 0, 0 is returned. if `count` is 1 then 1 is returned. else the function is called by passing the value of `count` and deducts the value by 1. the function is called again and `count` is passed as an argument this time deducts by 2. This method is usually slow as the values of previously calculated Fibonacci numbers are recalculated. hence the time complexity for it is exponential.
 
 ``` C++
-int rec_fib(int count) { // function for Fibonacci Number using the recursive methord
+int rec_fib(int count) { // function for Fibonacci Number using the recursive method
     if (count == 0)
         return 0;
     if (count == 1)
@@ -213,7 +217,7 @@ int rec_fib(int count) { // function for Fibonacci Number using the recursive me
 
 ## Reflection
 
-In conclusion, coding these algorithms has made me more confident in C++ and programming in general. The Fibonacci sequence tasks also showed me the importance of optimization as getting a Fibonacci number in imperative can take significantly less time than recursive. I could have improved the readability of my code in future iterations. i think my code could also be improved in terms of optimization.
+In conclusion, coding these algorithms has made me more confident in C++ and programming in general. The Fibonacci sequence tasks also showed me the importance of optimization as getting a Fibonacci number in imperative can take significantly less time than recursive. I could have improved the readability of my code in future iterations. I think my code could also be improved in terms of optimization. matrix by a scalar, ‘magic’ matrix and Cramer’s Rule matrix solving algorithms could also be implemented in the future.
 
 ## To Do
 
