@@ -169,11 +169,50 @@ int main()
 
 ## Fibonacci
 
+Writing an algorithm to find and time Fibonacci sequences was the second task. Here I have 2 sets of styles that does the same task which is finding the nth Fibonacci number.
 
-### Iterative version
+I have used the `chrono` library to get the execution time for each style of the Fibonacci sequences. 
+
+To use this program `cd` into the `fibonacci` directory and type `make`. To execute the program simply type `./main` .
+```
+Useage: 
+        ./fib [-i/-r] [count] [-t] 
+
+        -i      imperative
+        -r      recursive
+        -t      output time taken
+```
+
+### imperative version
+
+In the imperative version a desired number is passed to the function and is looped that many times, each time adding the value of `fib1` and `fib2` to `fib`. Then moving `fib2` to `fib1`. The Value of `fib` is also moved to `fib2`. Finally the value of `fib2` is returned.
+
+```c++
+int imp_fib(int count) { // function for Fibonacci Number using the imperative methord
+    std::cout << count << " Fibonacci Number using the imperative methord." << std::endl;
+
+    for(int i = 2; i < count; i++){ 
+        fib = fib1 + fib2;
+        std::cout << fib2 << std::endl;
+        fib1 = fib2;
+        fib2 = fib;
+    }
+    return fib2;
+}
+```
 
 ### Recursive version
+Using the recursive method the function here does not use a loop yet is recursively called and the previous count is inputted as an argument. depending if the value of `count` is 0, 0 is returned. if `count` is 1 then 1 is returned. else the function is called by passing the value of `count` and deducts the value by 1. the function is called again and `count` is passed as an argument this time deducts by 2. This method is usually slow as the values of previously calculated fibonacci numbers are recalculated. hence the time complexity for it is exponential.
 
+``` C++
+int rec_fib(int count) { // function for Fibonacci Number using the recursive methord
+    if (count == 0)
+        return 0;
+    if (count == 1)
+        return 1;
+    return rec_fib(count-1)+rec_fib(count-2);
+}
+```
 ## Reflection
 
 ## To Do
