@@ -22,7 +22,11 @@ As stated previously I will be extending the matrix library to support matrix mu
 
 Firstly, the matrix library comes with a matrix structure.
 
+<<<<<<< HEAD
 ```C++
+=======
+``` c++
+>>>>>>> a44ed6f3dbb647976dea0a05260c2f671120cb1f
 struct myMat {			// allows for matrices up to size 4*4
 	int numRows;		// number of rows
 	int numCols;
@@ -34,7 +38,11 @@ As stated, the myMat struct will allow to create matrices up to 4 rows and 4 col
 
  To get the column of a matrix I will have to create a new matrix structure for the output. Then as shown below for every row we loop and append each element from the matrix to the output vector.
 
+<<<<<<< HEAD
 ``` C++
+=======
+``` c++
+>>>>>>> a44ed6f3dbb647976dea0a05260c2f671120cb1f
 myMat mGetCol(myMat m, int col) {
 	myMat res = zeroMat(m.numRows, 1); 				// create new matrix with 1 column
 	for (int row = 0; row < m.numRows; row++)		// for each element in column
@@ -45,7 +53,11 @@ myMat mGetCol(myMat m, int col) {
 
 Next, I had to create a function to calculate the dot product of a given vector. This was simple as I had to loop over the columns and add the multiple of both the vectors to the result. This that can be outputted as an integer.
 
+<<<<<<< HEAD
 ```C++
+=======
+``` c++
+>>>>>>> a44ed6f3dbb647976dea0a05260c2f671120cb1f
 int dotProd(myMat v1, myMat v2) {
 	int prod = 0;									// initiate prod variable
 	for (int I = 0; i < v1.numCols; i++){			// for each column in vector add prod plus the multiple of both the vectors
@@ -57,7 +69,7 @@ int dotProd(myMat v1, myMat v2) {
 
 For `mTranspose` I created a matrix `mO` with the same number of rows and columns as the input matrix. Then using a loop each of the values of the matrix were flipped and copied to `mO`.
 
-```C++
+``` c++
 myMat mTranspose(myMat m) {
 	myMat mO = zeroMat(m.numCols, m.numRows);		// create a matrix mO with the same number of rows and columns as the input matrix.
 	for(int i=0; i< m.numRows; ++i) {				// for each item in rom and for each column in row flip the values that reffer to  i and j.
@@ -72,7 +84,7 @@ myMat mTranspose(myMat m) {
 
 The matrix addition’s function uses a loop that get the value `i` and `j` using the `getElem` function from both the matrices and add them together. the value of it is then set to the same location in the output matrix.
 
-```C++
+``` c++
 myMat mAdd(myMat m1, myMat m2) {
 	myMat m3 = zeroMat(m1.numRows, m2.numCols); 	// create a matrix with the same number of rows as the matrix1 and the same number of columns as the matrix2.
 	for(int i = 0; i < m1.numRows; i++) {			//loop until all numbers in matrix1 and matrix1 are added to matrix3 and returned the matrix.
@@ -88,7 +100,7 @@ For the Matrix multiplication function, I created an object `m3` and if the rows
 
 Then for each row in the first matrix and the column in the second matrix get the value of i and j in the new matrix and it to the multiple of i and k from the first matrix and k and j from the second matrix. This is done until all the rows and columns have been processed.
 
-```C++
+``` c++
 myMat mMult(myMat m1, myMat m2) {
 	myMat m3;									// initiate matrix m3
 	if (m1.numRows == 1 && m1.numCols == 1)		// if single row, column matrix inputted use the number of rows and columns as the other matrix.
@@ -117,7 +129,7 @@ myMat mMult(myMat m1, myMat m2) {
 
 The Following code try's to compute the questions set by Prof Richard Mitchell from his webpages accessible [here](https://www.personal.reading.ac.uk/~shsmchlr/jsmaths/AutumnAssignment.html). The Pictures after the code show the Output of set main function.
 
-```C++
+``` c++
 int main()
 {
 	cout << "Richard's Matrix Example Program\n";
@@ -187,7 +199,11 @@ Usage:
 
 In the imperative version a desired number is passed to the function and is looped that many times, each time adding the value of `fib1` and `fib2` to `fib`. Then moving `fib2` to `fib1`. The Value of `fib` is also moved to `fib2`. Finally the value of `fib2` is returned.
 
+<<<<<<< HEAD
 ```c++
+=======
+``` c++
+>>>>>>> a44ed6f3dbb647976dea0a05260c2f671120cb1f
 int imp_fib(int count) { // function for Fibonacci Number using the imperative method
     std::cout << count << " Fibonacci Number using the imperative methord." << std::endl;
 
@@ -202,10 +218,18 @@ int imp_fib(int count) { // function for Fibonacci Number using the imperative m
 ```
 
 ### Recursive version
+<<<<<<< HEAD
 
 Using the recursive method, the function here does not use a loop yet is recursively called and the previous count is inputted as an argument. depending on if the value of `count` is 0, 0 is returned. if `count` is 1 then 1 is returned. else the function is called by passing the value of `count` and deducts the value by 1. the function is called again and `count` is passed as an argument this time deducts by 2. This method is usually slow as the values of previously calculated Fibonacci numbers are recalculated. hence the time complexity for it is exponential.
 
 ``` C++
+=======
+
+Using the recursive method, the function here does not use a loop yet is recursively called and the previous count is inputted as an argument. depending on if the value of `count` is 0, 0 is returned. if `count` is 1 then 1 is returned. else the function is called by passing the value of `count` and deducts the value by 1. the function is called again and `count` is passed as an argument this time deducts by 2. This method is usually slow as the values of previously calculated Fibonacci numbers are recalculated. hence the time complexity for it is exponential.
+
+
+``` c++
+>>>>>>> a44ed6f3dbb647976dea0a05260c2f671120cb1f
 int rec_fib(int count) { // function for Fibonacci Number using the recursive method
     if (count == 0)
         return 0;
