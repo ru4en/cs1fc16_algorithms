@@ -21,7 +21,7 @@ For this report I am instructed to create 2 sets of algorithms. One of them will
 As stated previously i will be extending the matrix library to support matrix multiplications, additions, transpose, dot product and get column. This will be implemented using 5 functions. 
 
 Firstly, the matrix library comes with a matrix structure.
-``` C++
+``` c++
 struct myMat {			// allows for matrices up to size 4*4
 	int numRows;		// number of rows
 	int numCols;
@@ -32,7 +32,8 @@ struct myMat {			// allows for matrices up to size 4*4
 As stated the myMat struct will allow to create matrices up to 4 rows and 4 columns. The `numRows` variable and `numCols` variable stores the number of rows and columns to be created. The `data` variable holds the value of the matrix.
 
  To get the column of a matrix I will have to create a new matrix structure for the output. Then as shown below for every row we loop and append each element from the matrix to the output vector.
-``` C++
+
+``` c++
 myMat mGetCol(myMat m, int col) {
 	myMat res = zeroMat(m.numRows, 1);
 	for (int row = 0; row < m.numRows; row++)
@@ -43,7 +44,7 @@ myMat mGetCol(myMat m, int col) {
 
 Next I had to create a function to calculate the dot product of a given vector. This was simple as I had to loop over the columns and add the multiple of both the vectors to the result. This that can be outputted as a integer.
  
-``` C++
+``` c++
 int dotProd(myMat v1, myMat v2) {
 	int prod = 0;
 	for (int i = 0; i < v1.numCols; i++){
@@ -55,7 +56,7 @@ int dotProd(myMat v1, myMat v2) {
 
 For `mTranspose` I created a matrix `mO` with the same number of rows and columns as the input matrix. Then using a loop each of the values of the matrix were flipped and copied to `mO`.
 
-``` C++
+``` c++
 myMat mTranspose(myMat m) {
 	myMat mO = zeroMat(m.numCols, m.numRows);
 	for(int i=0; i< m.numRows; ++i) {
@@ -70,7 +71,7 @@ myMat mTranspose(myMat m) {
 
 The matrix additions function uses a loop that get the value `i` and `j` using the `getElem` function from both the matrices and add them together. the value of it is then set to the same location in the output matrix.
 
-``` C++
+``` c++
 myMat mAdd(myMat m1, myMat m2) {
 
 
@@ -89,7 +90,7 @@ For the Matrix multiplication function I created a object `m3` and if the rows a
 
 Then for each row in the first matrix and the column in the second matrix get the value of i and j in the new matrix and it to the multiple of i and k from the first matrix and k and j from the second matrix. This is done until all the rows and columns have been processed.
 
-``` C++
+``` c++
 myMat mMult(myMat m1, myMat m2) {
 	myMat m3;
 	if (m1.numRows == 1 && m1.numCols == 1)
@@ -118,7 +119,7 @@ myMat mMult(myMat m1, myMat m2) {
 
 The Following code try's to compute the questions set by Prof Richard Mitchell on his webpages accessible [here](https://www.personal.reading.ac.uk/~shsmchlr/jsmaths/AutumnAssignment.html). The Pictures after the code show the Output of set main function.
 
-``` C++
+``` c++
 int main()
 {
 	cout << "Richard's Matrix Example Program\n";
@@ -187,7 +188,7 @@ Useage:
 
 In the imperative version a desired number is passed to the function and is looped that many times, each time adding the value of `fib1` and `fib2` to `fib`. Then moving `fib2` to `fib1`. The Value of `fib` is also moved to `fib2`. Finally the value of `fib2` is returned.
 
-``` C++
+``` c++
 int imp_fib(int count) { // function for Fibonacci Number using the imperative methord
     std::cout << count << " Fibonacci Number using the imperative methord." << std::endl;
 
@@ -204,7 +205,7 @@ int imp_fib(int count) { // function for Fibonacci Number using the imperative m
 ### Recursive version
 Using the recursive method the function here does not use a loop yet is recursively called and the previous count is inputted as an argument. depending if the value of `count` is 0, 0 is returned. if `count` is 1 then 1 is returned. else the function is called by passing the value of `count` and deducts the value by 1. the function is called again and `count` is passed as an argument this time deducts by 2. This method is usually slow as the values of previously calculated fibonacci numbers are recalculated. hence the time complexity for it is exponential.
 
-``` C++
+``` c++
 int rec_fib(int count) { // function for Fibonacci Number using the recursive methord
     if (count == 0)
         return 0;
