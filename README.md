@@ -1,24 +1,24 @@
 # Algorithms
 
-**Module Code:** CS1FC16
+**Module Code: ** CS1FC16
 
-**Assignment report Title:** Matrix and Fibonacci algorithms
+**Assignment report Title: ** Matrix and Fibonacci algorithms
 
-**Student Number:** 30021591
+**Student Number: ** 30021591
 
-**Date:** 13/022022
+**Date: ** 13/022022
 
-**Actual hrs spent for the assignment:** 12hrs
+**Actual hrs spent for the assignment: ** 12hrs
 
-**Assignment evaluation (3 key points):** Learned how to create ## ## ## in C++. grasped the basic understand of Functional VS imperative programing and the affects on performance.
+**Assignment evaluation (3 key points): ** Learned how to create ## ## ## in C++. grasped the basic understand of Functional VS imperative programming and the effects on performance.
 
 ## Introduction
 
-For this report I am instructed to create 2 sets of algorithms. One of them will print out the nth number of the fibonacci sequence using 2 different paradigm's of programing. one recursively and the other imperatively. for the other algorithm I will be using the provided matrix library to extend it to compute matrix multiplications, additions, transpose, dot product and to get a column of the matrix from the provided column number.For these algorithm I will be using the C++ programing language.
+For this report I am instructed to create 2 sets of algorithms. One of them will print out the nth number of the Fibonacci sequence using 2 different paradigms of programming. one recursively and the other imperatively. for the other algorithm I will be using the provided matrix library to extend it to compute matrix multiplications, additions, transpose, dot product and to get a column of the matrix from the provided column number. For these algorithms I will be using the C++ programming language.
 
 ## matrix library
 
-As stated previously i will be extending the matrix library to support matrix multiplications, additions, transpose, dot product and get column. This will be implemented using 5 functions. 
+As stated previously I will be extending the matrix library to support matrix multiplications, additions, transpose, dot product and get column. This will be implemented using 5 functions. 
 
 Firstly, the matrix library comes with a matrix structure.
 ```C++
@@ -29,24 +29,24 @@ struct myMat {			// allows for matrices up to size 4*4
 };
 ```
 
-As stated the myMat struct will allow to create matrices up to 4 rows and 4 columns. The `numRows` variable and `numCols` variable stores the number of rows and columns to be created. The `data` variable holds the value of the matrix.
+As stated, the myMat struct will allow to create matrices up to 4 rows and 4 columns. The `numRows` variable and `numCols` variable stores the number of rows and columns to be created. The `data` variable holds the value of the matrix.
 
  To get the column of a matrix I will have to create a new matrix structure for the output. Then as shown below for every row we loop and append each element from the matrix to the output vector.
 ``` C++
 myMat mGetCol(myMat m, int col) {
-	myMat res = zeroMat(m.numRows, 1);
-	for (int row = 0; row < m.numRows; row++)
-		res.data[row] = getElem(m, row, col);
+	myMat res = zeroMat(m.numRows, 1); 				// create new matrix with 1 column
+	for (int row = 0; row < m.numRows; row++)		// for each element in column
+		res.data[row] = getElem(m, row, col);		// copy row element to res
 	return res;
 }
 ```
 
-Next I had to create a function to calculate the dot product of a given vector. This was simple as I had to loop over the columns and add the multiple of both the vectors to the result. This that can be outputted as a integer.
+Next, I had to create a function to calculate the dot product of a given vector. This was simple as I had to loop over the columns and add the multiple of both the vectors to the result. This that can be outputted as an integer.
  
 ```C++
 int dotProd(myMat v1, myMat v2) {
-	int prod = 0;
-	for (int i = 0; i < v1.numCols; i++){
+	int prod = 0;									// initiate prod variable
+	for (int I = 0; i < v1.numCols; i++){			// for each column in vector add prod plus the multiple of both the vectors
 		prod = prod + getElem(v1,0,i) * getElem(v2,0,i);
 	}
 	return prod;
@@ -57,8 +57,8 @@ For `mTranspose` I created a matrix `mO` with the same number of rows and column
 
 ```C++
 myMat mTranspose(myMat m) {
-	myMat mO = zeroMat(m.numCols, m.numRows);
-	for(int i=0; i< m.numRows; ++i) {
+	myMat mO = zeroMat(m.numCols, m.numRows);		// create a matrix mO with the same number of rows and columns as the input matrix.
+	for(int i=0; i< m.numRows; ++i) {				// for each item in rom and for each column in row flip the values that reffer to  i and j.
 		for(int j=0; j< m.numCols; ++j){
 			int val = getElem(m, i, j);
 			setElem(mO, j, i, val);
@@ -68,15 +68,12 @@ myMat mTranspose(myMat m) {
 }
 ```
 
-The matrix additions function uses a loop that get the value `i` and `j` using the `getElem` function from both the matrices and add them together. the value of it is then set to the same location in the output matrix.
+The matrix addition’s function uses a loop that get the value `i` and `j` using the `getElem` function from both the matrices and add them together. the value of it is then set to the same location in the output matrix.
 
 ```C++
 myMat mAdd(myMat m1, myMat m2) {
-
-
-	myMat m3 = zeroMat(m1.numRows, m2.numCols);
-
-	for(int i = 0; i < m1.numRows; i++) { //loop until all numbers in A and B are added to result and returned
+	myMat m3 = zeroMat(m1.numRows, m2.numCols); 	// create a matrix with the same number of rows as the matrix1 and the same number of columns as the matrix2.
+	for(int i = 0; i < m1.numRows; i++) {			//loop until all numbers in matrix1 and matrix1 are added to matrix3 and returned the matrix.
             for(int j = 0; j < m2.numCols; j++) {
 				int val = getElem(m1, i, j) + getElem(m2, i, j);
                 setElem(m3, i, j, val);
@@ -85,30 +82,30 @@ myMat mAdd(myMat m1, myMat m2) {
 		return m3;
 }
 ```
-For the Matrix multiplication function I created a object `m3` and if the rows and colums are equle to 1 the rows and colums are set to the number of rows and columns of the other matrix. if non of the matasies have 1 row ro colum the row on the new matrix is set to the number of rows as the first matrix and the column is sat to the number of columns as the second matrix.
+For the Matrix multiplication function, I created an object `m3` and if the rows and columns are equal to 1 the rows and columns are set to the number of rows and columns of the other matrix. if none of the matrices have 1 row or column the row on the new matrix is set to the number of rows as the first matrix and the column is sat to the number of columns as the second matrix.
 
 Then for each row in the first matrix and the column in the second matrix get the value of i and j in the new matrix and it to the multiple of i and k from the first matrix and k and j from the second matrix. This is done until all the rows and columns have been processed.
 
 ```C++
 myMat mMult(myMat m1, myMat m2) {
-	myMat m3;
-	if (m1.numRows == 1 && m1.numCols == 1)
+	myMat m3;									// initiate matrix m3
+	if (m1.numRows == 1 && m1.numCols == 1)		// if single row, column matrix inputted use the number of rows and columns as the other matrix.
 	{
 		m3 = zeroMat(m2.numRows, m2.numCols);
 	}else if (m2.numRows == 1 && m2.numCols == 1) {
 		m3 = zeroMat(m1.numRows, m1.numCols);
 
-	}else {
+	}else {										// else set the number of rows the same size as the first matrix and column as the second matrix.
 		m3 = zeroMat(m1.numRows, m2.numCols);
 	}
 
-	int val;
+	int val;									// variable to store values when loopes
 	
-	for(int i = 0; i < m1.numRows; ++i) {
+	for(int i = 0; i < m1.numRows; ++i) { 		// loop trough A and B, multiply and to result, then return.
 		for(int j = 0; j < m2.numCols; ++j) {
 			for(int k = 0; k < m2.numRows; ++k) {
 				int val = getElem(m3, i, j) + getElem(m1, i, k) * getElem(m2, k, j);
-				setElem(m3, i, j, val);
+				setElem(m3, i, j, val);			// save the value of val to m3 and output when done
 			}
 		}
 	}
@@ -116,7 +113,7 @@ myMat mMult(myMat m1, myMat m2) {
 }
 ```
 
-The Following code try's to compute the questions set by Prof Richard Mitchell on his webpages accessible [here](https://www.personal.reading.ac.uk/~shsmchlr/jsmaths/AutumnAssignment.html). The Pictures after the code show the Output of set main function.
+The Following code try's to compute the questions set by Prof Richard Mitchell from his webpages accessible [here](https://www.personal.reading.ac.uk/~shsmchlr/jsmaths/AutumnAssignment.html). The Pictures after the code show the Output of set main function.
 
 ```C++
 int main()
@@ -136,7 +133,7 @@ int main()
 
 	cout << "Calculate 1A + 10B\n";
 
-	myMat Q1_1_mat = mFromStr("1");				// create 1x1 matrix of 1 (ik its unecessary but its used to check if it works)
+	myMat Q1_1_mat = mFromStr("1");				// create 1x1 matrix of 1 (ik its unnecessary but its used to check if it works)
 	myMat Q1_10_mat = mFromStr("10");			// create 1x1 matrix of 10
 	myMat Q1_1A = mMult(Q1_1_mat, Q1A);			// Multiply 1 by Matrix A
 	printMat("1A", Q1_1A);
@@ -173,9 +170,9 @@ Writing an algorithm to find and time Fibonacci sequences was the second task. H
 
 I have used the `chrono` library to get the execution time for each style of the Fibonacci sequences. 
 
-To use this program `cd` into the `fibonacci` directory and type `make`. To execute the program simply type `./main` .
+To use this program `cd` into the `Fibonacci` directory and type `make`. To execute the program simply type `./main` .
 ```
-Useage: 
+Usage: 
         ./fib [-i/-r] [count] [-t] 
 
         -i      imperative
@@ -202,7 +199,7 @@ int imp_fib(int count) { // function for Fibonacci Number using the imperative m
 ```
 
 ### Recursive version
-Using the recursive method the function here does not use a loop yet is recursively called and the previous count is inputted as an argument. depending if the value of `count` is 0, 0 is returned. if `count` is 1 then 1 is returned. else the function is called by passing the value of `count` and deducts the value by 1. the function is called again and `count` is passed as an argument this time deducts by 2. This method is usually slow as the values of previously calculated fibonacci numbers are recalculated. hence the time complexity for it is exponential.
+Using the recursive method, the function here does not use a loop yet is recursively called and the previous count is inputted as an argument. depending on if the value of `count` is 0, 0 is returned. if `count` is 1 then 1 is returned. else the function is called by passing the value of `count` and deducts the value by 1. the function is called again and `count` is passed as an argument this time deducts by 2. This method is usually slow as the values of previously calculated Fibonacci numbers are recalculated. hence the time complexity for it is exponential.
 
 ``` C++
 int rec_fib(int count) { // function for Fibonacci Number using the recursive methord
@@ -213,7 +210,10 @@ int rec_fib(int count) { // function for Fibonacci Number using the recursive me
     return rec_fib(count-1)+rec_fib(count-2);
 }
 ```
+
 ## Reflection
+
+In conclusion, coding these algorithms has made me more confident in C++ and programming in general. The Fibonacci sequence tasks also showed me the importance of optimization as getting a Fibonacci number in imperative can take significantly less time than recursive. I could have improved the readability of my code in future iterations. i think my code could also be improved in terms of optimization.
 
 ## To Do
 
