@@ -21,7 +21,7 @@ For this report I am instructed to create 2 sets of algorithms. One of them will
 As stated previously i will be extending the matrix library to support matrix multiplications, additions, transpose, dot product and get column. This will be implemented using 5 functions. 
 
 Firstly, the matrix library comes with a matrix structure.
-```C++
+``` C++
 struct myMat {			// allows for matrices up to size 4*4
 	int numRows;		// number of rows
 	int numCols;
@@ -43,7 +43,7 @@ myMat mGetCol(myMat m, int col) {
 
 Next I had to create a function to calculate the dot product of a given vector. This was simple as I had to loop over the columns and add the multiple of both the vectors to the result. This that can be outputted as a integer.
  
-```C++
+``` C++
 int dotProd(myMat v1, myMat v2) {
 	int prod = 0;
 	for (int i = 0; i < v1.numCols; i++){
@@ -55,7 +55,7 @@ int dotProd(myMat v1, myMat v2) {
 
 For `mTranspose` I created a matrix `mO` with the same number of rows and columns as the input matrix. Then using a loop each of the values of the matrix were flipped and copied to `mO`.
 
-```C++
+``` C++
 myMat mTranspose(myMat m) {
 	myMat mO = zeroMat(m.numCols, m.numRows);
 	for(int i=0; i< m.numRows; ++i) {
@@ -70,7 +70,7 @@ myMat mTranspose(myMat m) {
 
 The matrix additions function uses a loop that get the value `i` and `j` using the `getElem` function from both the matrices and add them together. the value of it is then set to the same location in the output matrix.
 
-```C++
+``` C++
 myMat mAdd(myMat m1, myMat m2) {
 
 
@@ -89,7 +89,7 @@ For the Matrix multiplication function I created a object `m3` and if the rows a
 
 Then for each row in the first matrix and the column in the second matrix get the value of i and j in the new matrix and it to the multiple of i and k from the first matrix and k and j from the second matrix. This is done until all the rows and columns have been processed.
 
-```C++
+``` C++
 myMat mMult(myMat m1, myMat m2) {
 	myMat m3;
 	if (m1.numRows == 1 && m1.numCols == 1)
@@ -118,7 +118,7 @@ myMat mMult(myMat m1, myMat m2) {
 
 The Following code try's to compute the questions set by Prof Richard Mitchell on his webpages accessible [here](https://www.personal.reading.ac.uk/~shsmchlr/jsmaths/AutumnAssignment.html). The Pictures after the code show the Output of set main function.
 
-```C++
+``` C++
 int main()
 {
 	cout << "Richard's Matrix Example Program\n";
@@ -187,7 +187,7 @@ Useage:
 
 In the imperative version a desired number is passed to the function and is looped that many times, each time adding the value of `fib1` and `fib2` to `fib`. Then moving `fib2` to `fib1`. The Value of `fib` is also moved to `fib2`. Finally the value of `fib2` is returned.
 
-```c++
+``` C++
 int imp_fib(int count) { // function for Fibonacci Number using the imperative methord
     std::cout << count << " Fibonacci Number using the imperative methord." << std::endl;
 
